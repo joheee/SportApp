@@ -13,6 +13,10 @@ class UserModel extends Model
         $user = $this->where('email', $email)->first();
 
         if ($user && $password == $user['password']) {
+            $session = session();
+            $session->set([
+                'logged_user' => $user,
+            ]);
             return true;
         } else {
             return false;
