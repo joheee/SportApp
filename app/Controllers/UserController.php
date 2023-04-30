@@ -9,7 +9,6 @@ class UserController extends BaseController
 {
     public function handleLogin() {
         $data = [];
-
         $model = new UserModel();
 
         $email = $this->request->getPost('email');

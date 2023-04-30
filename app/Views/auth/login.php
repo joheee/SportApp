@@ -20,12 +20,9 @@
               <input type="password" id="form2Example27" class="form-control form-control-lg" placeholder="password" name="password"/>
             </div>
 
-            <?php if(isset($_SESSION['error'])) { ?>
+            <?php if(!empty($error)) { ?>
               <div class="alert alert-danger" role="alert" >
-                  <?php 
-                    echo $_SESSION['error']; 
-                    unset($_SESSION['error']);
-                  ?>
+                  <?= $error ?>
               </div>
             <?php } ?>
             
