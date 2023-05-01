@@ -22,4 +22,26 @@ class UserModel extends Model
             return false;
         }
     }
+
+    public function handleRegister($name,$email,$password) {
+        if(empty($name) && empty($email) && empty($password)) return false;
+        
+        $data = [
+            'name' => $name,
+            'email' => $email,
+            'password' => $password
+        ];
+
+        $user = $this->insert($data);
+        $session = session();
+        $session->set([
+            'logged_user' => $user
+        ]);
+        return true;
+    }
+
+    public function handleLogout() {
+        $session = session();
+        $session->remove('logged_user');
+    }
 }

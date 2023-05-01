@@ -8,7 +8,7 @@
     <div class="row d-flex justify-content-center align-items-center h-100">
       <div class="col-12 col-md-8 col-lg-6 col-xl-5">
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
-          <form method="post" action="" class="card-body p-5 text-center">
+          <form method="post" action="<?= route_to('guest.handleRegister') ?>" class="card-body p-5 text-center">
 
             <h3 class="mb-5">Sign Up</h3>
 
@@ -24,12 +24,9 @@
               <input type="password" id="form2Example27" class="form-control form-control-lg" placeholder="new password" name="password"/>
             </div>
 
-            <?php if(isset($_SESSION['error'])) { ?>
+            <?php if(!empty($error)) { ?>
               <div class="alert alert-danger" role="alert" >
-                  <?php 
-                    echo $_SESSION['error']; 
-                    unset($_SESSION['error']);
-                  ?>
+                  <?= $error ?>
               </div>
             <?php } ?>
 
