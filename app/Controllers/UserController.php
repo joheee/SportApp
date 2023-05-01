@@ -7,13 +7,6 @@ use App\Models\UserModel;
 
 class UserController extends BaseController
 {
-    protected $validation;
-    protected $userModel;
-
-    public function __construct()
-    {
-        $this->validation = \Config\Services::validation();
-    }
 
     public function handleLogin() {
         $data = [];
@@ -31,28 +24,27 @@ class UserController extends BaseController
     }
 
     public function handleRegister() {
-        $data = [];
+        helper(['form']);
         $model = new UserModel();
+        $rules = [
+            'name' => 'required|min_length[5]|max_length[50]',
+            'email' => 'required|valid_email',
+            'password' => 'required|min_length[4]'
+        ];
 
-        $name = $this->request->getPost('name');
-        $email = $this->request->getPost('email');
-        $password = $this->request->getPost('password');
-                
-        $this->validation->setRules(
-            [
-                'name' => 'required|min_length[5]|max_length[50]',
-                'email' => 'required|valid_email',
-                'password' => 'required|min_length[4]'
-            ]
-        );
-
-        if ($this->validation->withRequest($this->request)->run()) {
+        if($this->validate($rules)){
+            $name = $this->request->getPost('name');
+            $email = $this->request->getPost('email');
+            $password = $this->request->getPost('password');
             $model->handleRegister($name, $email, $password);
             echo view('auth/register');
-            return;
+        } else {
+            $getError = $this->validator;
+            $errors = $getError->getErrors();
+            $data['error'] = reset($errors);
+    
+            echo view('auth/register', $data);
         }
-        $data['errors'] = $this->validation->getErrors();
-        echo view('auth/register', $data);
     }
 
     public function handleLogout() {
