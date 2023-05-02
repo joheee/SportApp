@@ -21,11 +21,36 @@
 
 <div class="container-fluid">
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-        <a href="insertClothes.php" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa-solid fa-shirt"></i> Insert New Clothes</a>
+        <a href="<?= route_to('admin.insert') ?>" class="d-none d-sm-inline-block btn btn-sm btn-primary shadow-sm"><i class="fa-solid fa-shirt"></i> Insert New Clothes</a>
     </div>
 
     <div class="container card p-5">
-        testing 
+        <table class="table">
+            <thead>
+                <tr>
+                <th scope="col">Product ID</th>
+                <th scope="col">Product Image</th>
+                <th scope="col">Product Name</th>
+                <th scope="col">Product Stock</th>
+                <th scope="col">Product Price</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php if(!empty($products)) { ?>
+                    <?php foreach($products as $p) { ?>
+                        <tr>
+                            <td><?= $p['product_id'] ?></td>
+                            <td><?= $p['name'] ?></td>
+                            <td>
+                                <img src="<?= base_url('public/uploads/' . $p['image']) ?>" alt="Uploaded Image" style="max-width: 200px;">
+                            </td>
+                            <td><?= $p['ammount'] ?></td>
+                            <td><?= $p['price'] ?></td>
+                        </tr>
+                    <?php } ?>
+                <?php } ?>
+            </tbody>
+        </table>
     </div>
 </div>
 <?= $this->endSection() ?>

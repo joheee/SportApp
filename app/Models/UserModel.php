@@ -7,7 +7,7 @@ use CodeIgniter\Model;
 class UserModel extends Model
 {
     protected $table            = 'users';
-    protected $allowedFields    = ['name','email','password'];
+    protected $allowedFields    = ['name','email','password','role'];
 
     public function handleLogin($email,$password) {
         $user = $this->where('email', $email)->first();
@@ -29,10 +29,13 @@ class UserModel extends Model
         $data = [
             'name' => $name,
             'email' => $email,
-            'password' => $password
+            'password' => $password,
+            'role' => 'customer'
         ];
 
         $user = $this->insert($data);
+        $user = $this->where('user_id', $user)->first();
+
         $session = session();
         $session->set([
             'logged_user' => $user

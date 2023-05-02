@@ -16,7 +16,7 @@ class UserController extends BaseController
         $password = $this->request->getPost('password');
 
         if ($model->handleLogin($email, $password)) {
-            echo view('auth/register');
+            return redirect()->to(route_to('guest.register'));
         } else {
             $data['error'] = 'Invalid credentials!';
         }
@@ -24,10 +24,9 @@ class UserController extends BaseController
     }
 
     public function handleRegister() {
-        helper(['form']);
         $model = new UserModel();
         $rules = [
-            'name' => 'required|min_length[5]|max_length[50]',
+            'name' => 'required|min_length[4]|max_length[50]',
             'email' => 'required|valid_email',
             'password' => 'required|min_length[4]'
         ];
@@ -50,6 +49,6 @@ class UserController extends BaseController
     public function handleLogout() {
         $model = new UserModel();
         $model->handleLogout();
-        echo view('auth/login');
+        return redirect()->route('guest.login');
     }   
 }

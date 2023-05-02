@@ -35,9 +35,12 @@ $routes->post('/register', 'UserController::handleRegister', ['as' => 'guest.han
 
 $routes->get('/logout', 'UserController::handleLogout', ['as' => 'guest.handleLogout']);
 
-$routes->get('/admin-dashboard','AdminController::index', ['as' => 'admin.dashboard']);
-$routes->get('/admin-transaction','AdminController::transaction', ['as' => 'admin.transaction']);
+$routes->get('/admin-dashboard','AdminController::index',['as' => 'admin.dashboard']);
+$routes->get('/admin-transaction','AdminController::transaction',['as' => 'admin.transaction']);
+$routes->get('/admin-product','AdminController::insert',['as' => 'admin.insert']);
+$routes->post('/admin-product','AdminController::handleInsert',['as' => 'admin.handleInsert']);
 
+$routes->get('/customer-dashboard','CustomerController::index',['as' => 'customer.dashboard']);
 
 /*
  * --------------------------------------------------------------------
