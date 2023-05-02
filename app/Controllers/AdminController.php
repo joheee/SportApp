@@ -48,4 +48,9 @@ class AdminController extends BaseController
             echo view('admin/insertProduct', $data);
         }
     }
+    public function handleDelete($id){
+        $model = new ProductModel();
+        $model->delete($id);
+        return redirect()->route('admin.dashboard');
+    }
 }

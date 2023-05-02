@@ -37,8 +37,10 @@ $routes->get('/logout', 'UserController::handleLogout', ['as' => 'guest.handleLo
 
 $routes->get('/admin-dashboard','AdminController::index',['as' => 'admin.dashboard']);
 $routes->get('/admin-transaction','AdminController::transaction',['as' => 'admin.transaction']);
+
 $routes->get('/admin-product','AdminController::insert',['as' => 'admin.insert']);
 $routes->post('/admin-product','AdminController::handleInsert',['as' => 'admin.handleInsert']);
+$routes->get('/admin-product-delete/(:num)','AdminController::handleDelete/$1',['as' => 'admin.handleDelete']);
 
 $routes->get('/customer-dashboard','CustomerController::index',['as' => 'customer.dashboard']);
 

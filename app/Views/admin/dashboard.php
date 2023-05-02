@@ -33,6 +33,7 @@
                 <th scope="col">Product Name</th>
                 <th scope="col">Product Stock</th>
                 <th scope="col">Product Price</th>
+                <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -42,10 +43,14 @@
                             <td><?= $p['product_id'] ?></td>
                             <td><?= $p['name'] ?></td>
                             <td>
-                                <img src="<?= base_url('public/uploads/' . $p['image']) ?>" alt="Uploaded Image" style="max-width: 200px;">
+                                <img src="<?= base_url('public/uploads/' . $p['image']) ?>" alt="Uploaded Image" style="max-width: 100px;">
                             </td>
                             <td><?= $p['ammount'] ?></td>
                             <td><?= $p['price'] ?></td>
+                            <td class="row gap-2">
+                                <a class="col-auto btn btn-primary" href="">update</a>
+                                <a class="col-auto btn btn-danger"  href="<?= route_to('admin.handleDelete', $p['product_id']) ?>">delete</a>
+                            </td>
                         </tr>
                     <?php } ?>
                 <?php } ?>
