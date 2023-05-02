@@ -13,7 +13,7 @@
         <li class="nav-item dropdown no-arrow">
             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Admin</span>
+                <span class="mr-2 d-none d-lg-inline text-gray-600 small"><?= session()->get('logged_user')['name'] ?></span>
             </a>
         </li>
     </ul>
@@ -45,7 +45,7 @@
                             <td><?= $p['ammount'] ?></td>
                             <td><?= $p['price'] ?></td>
                             <td class="row gap-2">
-                                <a class="col-auto btn btn-info"  href="<?= route_to('admin.update', $p['product_id']) ?>">buy</a>
+                                <a class="col-auto btn btn-info"  href="<?= route_to('customer.handleTransaction', $p['product_id']) ?>">buy</a>
                             </td>
                         </tr>
                     <?php } ?>

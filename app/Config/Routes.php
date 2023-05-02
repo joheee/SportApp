@@ -51,6 +51,7 @@ $routes->group('auth', ['filter' => 'authMiddleware'], function($routes) {
     $routes->group('customer', ['filter' => 'customerMiddleware'], function($routes) {
         $routes->get('customer-dashboard','CustomerController::index',['as' => 'customer.dashboard']);
         $routes->get('customer-transaction','CustomerController::transaction',['as' => 'customer.transaction']);
+        $routes->get('customer-transaction/(:num)','CustomerController::handleTransaction/$1',['as' => 'customer.handleTransaction']);
     });
 
 });
