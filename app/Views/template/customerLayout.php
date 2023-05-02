@@ -18,15 +18,9 @@
         <hr class="sidebar-divider my-0">
 
         <li class="nav-item active">
-            <a class="nav-link" href="home.php">
-            <i class="fa-solid fa-basket-shopping"></i>
-            <span>Buy Clothes</span></a>
-        </li>
-
-        <li class="nav-item active">
-            <a class="nav-link" href="cart.php">
-            <i class="fa-solid fa-cart-shopping"></i>
-            <span>Your Cart</span></a>
+            <a class="nav-link" href="<?= route_to('customer.dashboard') ?>">
+            <i class="fa-brands fa-shopify"></i>
+            <span>Sport Store</span></a>
         </li>
 
         <li class="nav-item active">

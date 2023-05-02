@@ -30,6 +30,7 @@
                 <th scope="col">Product Name</th>
                 <th scope="col">Product Stock</th>
                 <th scope="col">Product Price</th>
+                <th scope="col">Action</th>
                 </tr>
             </thead>
             <tbody>
@@ -43,7 +44,9 @@
                             </td>
                             <td><?= $p['ammount'] ?></td>
                             <td><?= $p['price'] ?></td>
-
+                            <td class="row gap-2">
+                                <a class="col-auto btn btn-info"  href="<?= route_to('admin.update', $p['product_id']) ?>">buy</a>
+                            </td>
                         </tr>
                     <?php } ?>
                 <?php } ?>
