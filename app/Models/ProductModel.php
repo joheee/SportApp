@@ -21,7 +21,6 @@ class ProductModel extends Model
             'price' => $price,
             'ammount' => $ammount
         ];
-        var_dump($data);
         $this->insert($data);
         return true;
     }

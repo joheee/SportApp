@@ -18,12 +18,20 @@ class AdminController extends BaseController
     public function insert(){
         return view('admin/insertProduct');
     }
+    public function update($id){
+        $model = new ProductModel();
+        $data['product'] = $model->find($id);
+        return view('admin/updateProduct', $data);
+    }
 
     public function handleInsert(){
         $model = new ProductModel();
         $rules = [
             'name' => 'required',
-            'price' => 'required',
+            'price' => 'required',            
+            'image' => [
+                'uploaded[image]',
+            ],
             'ammount' => 'required'
         ];
         if($this->validate($rules)){
@@ -52,5 +60,40 @@ class AdminController extends BaseController
         $model = new ProductModel();
         $model->delete($id);
         return redirect()->route('admin.dashboard');
+    }
+    public function handleUpdate($id){
+        $model = new ProductModel();
+        $rules = [
+            'name' => 'required',
+            'price' => 'required',    
+            'image' => [
+                'uploaded[image]',
+            ],
+            'ammount' => 'required'
+        ];
+        if($this->validate($rules)){
+            $image = $this->request->getFile('image');
+            $imageExt = $image->getExtension();
+            $uniqueId = uniqid();
+            $currentDateTime = date('Ymd_His');
+            $newImageName = $currentDateTime . '_' . $uniqueId . '.' . $imageExt;
+            $image->move('./public/uploads', $newImageName);
+
+            $data = [
+                'name' => $this->request->getPost('name'),
+                'image' => $newImageName,
+                'price' => $this->request->getPost('price'),
+                'ammount' => $this->request->getPost('ammount'),
+            ];
+
+            $model->update($id,$data);
+
+            return redirect()->route('admin.dashboard');
+        } else {
+            $getError = $this->validator;
+            $errors = $getError->getErrors();
+    
+            return redirect()->back()->with('error', reset($errors));
+        }
     }
 }

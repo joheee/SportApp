@@ -29,7 +29,6 @@ class GuestMiddleware implements FilterInterface
         $user = $session->get('logged_user');
         if (isset($user)) {
             if($user['role'] == 'admin') {
-                var_dump($user['role']);
                 return redirect()->route('admin.dashboard');
             }
             else return redirect()->route('customer.dashboard');

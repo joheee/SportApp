@@ -10,7 +10,7 @@
         <div class="card shadow-2-strong" style="border-radius: 1rem;">
           <form method="post" action="<?= route_to('admin.handleInsert') ?>" class="card-body p-5 text-center" enctype="multipart/form-data">
 
-            <h3 class="mb-5">Sign In</h3>
+            <h3 class="mb-5">Insert Product</h3>
 
             <div class="form-outline mb-4">
               <input type="text" id="form2Example17" class="form-control form-control-lg" placeholder="name" name="name">

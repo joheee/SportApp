@@ -41,6 +41,8 @@ $routes->get('/admin-transaction','AdminController::transaction',['as' => 'admin
 $routes->get('/admin-product','AdminController::insert',['as' => 'admin.insert']);
 $routes->post('/admin-product','AdminController::handleInsert',['as' => 'admin.handleInsert']);
 $routes->get('/admin-product-delete/(:num)','AdminController::handleDelete/$1',['as' => 'admin.handleDelete']);
+$routes->get('/admin-product-update/(:num)','AdminController::update/$1',['as' => 'admin.update']);
+$routes->post('/admin-product-update/(:num)','AdminController::handleUpdate/$1',['as' => 'admin.handleUpdate']);
 
 $routes->get('/customer-dashboard','CustomerController::index',['as' => 'customer.dashboard']);
 

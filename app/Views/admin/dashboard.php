@@ -48,7 +48,7 @@
                             <td><?= $p['ammount'] ?></td>
                             <td><?= $p['price'] ?></td>
                             <td class="row gap-2">
-                                <a class="col-auto btn btn-primary" href="">update</a>
+                                <a class="col-auto btn btn-primary"  href="<?= route_to('admin.update', $p['product_id']) ?>">update</a>
                                 <a class="col-auto btn btn-danger"  href="<?= route_to('admin.handleDelete', $p['product_id']) ?>">delete</a>
                             </td>
                         </tr>
