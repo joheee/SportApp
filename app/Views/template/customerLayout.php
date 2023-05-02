@@ -5,28 +5,34 @@
 <div id="wrapper">
         
     <!-- Sidebar -->
-    <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
+    <ul class="navbar-nav bg-gradient-info sidebar sidebar-dark accordion" id="accordionSidebar">
 
-    <!-- Sidebar - Brand -->
-    <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
-        <div class="sidebar-brand-icon rotate-n-15">
-            <i class="fa-solid fa-screwdriver-wrench"></i>
-        </div>
-        <div class="sidebar-brand-text mx-3">Admin Page</div>
-    </a>
+        <!-- Sidebar - Brand -->
+        <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <div class="sidebar-brand-icon rotate-n-15">
+                <i class="fa-solid fa-screwdriver-wrench"></i>
+            </div>
+            <div class="sidebar-brand-text mx-3">Customer Page</div>
+        </a>
 
-    <hr class="sidebar-divider my-0">
+        <hr class="sidebar-divider my-0">
 
         <li class="nav-item active">
-            <a class="nav-link" href="<?= route_to('admin.transaction') ?>">
-            <i class="fa-solid fa-money-check-dollar"></i>
-            <span>Transaction Report</span></a>
+            <a class="nav-link" href="home.php">
+            <i class="fa-solid fa-basket-shopping"></i>
+            <span>Buy Clothes</span></a>
         </li>
 
         <li class="nav-item active">
-            <a class="nav-link" href="<?= route_to('admin.dashboard') ?>">
-            <i class="fa-solid fa-shirt"></i>
-            <span>Sport Equipment</span></a>
+            <a class="nav-link" href="cart.php">
+            <i class="fa-solid fa-cart-shopping"></i>
+            <span>Your Cart</span></a>
+        </li>
+
+        <li class="nav-item active">
+            <a class="nav-link" href="transaction.php">
+            <i class="fa-sharp fa-solid fa-money-bill-transfer"></i>
+            <span>Transaction History</span></a>
         </li>
 
         <li class="nav-item active">
