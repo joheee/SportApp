@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class GuestMiddleware implements FilterInterface
+class CustomerMiddleware implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -31,7 +31,6 @@ class GuestMiddleware implements FilterInterface
             if($user['role'] == 'admin') {
                 return redirect()->route('admin.dashboard');
             }
-            else return redirect()->route('customer.dashboard');
         }
     }
 

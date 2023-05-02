@@ -6,7 +6,7 @@ use CodeIgniter\Filters\FilterInterface;
 use CodeIgniter\HTTP\RequestInterface;
 use CodeIgniter\HTTP\ResponseInterface;
 
-class GuestMiddleware implements FilterInterface
+class AdminMiddleware implements FilterInterface
 {
     /**
      * Do whatever processing this filter needs to do.
@@ -28,10 +28,9 @@ class GuestMiddleware implements FilterInterface
         $session = session();
         if ($session->get('logged_user') !== null) {
             $user = $session->get('logged_user');
-            if($user['role'] == 'admin') {
-                return redirect()->route('admin.dashboard');
+            if($user['role'] == 'customer') {
+                return redirect()->route('customer.dashboard');
             }
-            else return redirect()->route('customer.dashboard');
         }
     }
 

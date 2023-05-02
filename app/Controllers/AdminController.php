@@ -51,9 +51,7 @@ class AdminController extends BaseController
         } else {
             $getError = $this->validator;
             $errors = $getError->getErrors();
-            $data['error'] = reset($errors);
-    
-            echo view('admin/insertProduct', $data);
+            return redirect()->back()->with('error', reset($errors));
         }
     }
     public function handleDelete($id){
@@ -92,7 +90,6 @@ class AdminController extends BaseController
         } else {
             $getError = $this->validator;
             $errors = $getError->getErrors();
-    
             return redirect()->back()->with('error', reset($errors));
         }
     }

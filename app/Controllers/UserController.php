@@ -15,12 +15,12 @@ class UserController extends BaseController
         $email = $this->request->getPost('email');
         $password = $this->request->getPost('password');
 
-        if ($model->handleLogin($email, $password)) {
-            return redirect()->to(route_to('guest.register'));
-        } else {
-            $data['error'] = 'Invalid credentials!';
+        if ($model->handleLogin($email, $password) !== null) {
+            $user = $model->handleLogin($email, $password);
+            if($user == 'customer') return redirect()->route('customer.dashboard');
+            return redirect()->route('admin.dashboard');
         }
-        echo view('auth/login', $data);
+        return redirect()->back()->with('error', 'Invalid credentials!');
     }
 
     public function handleRegister() {
@@ -36,13 +36,11 @@ class UserController extends BaseController
             $email = $this->request->getPost('email');
             $password = $this->request->getPost('password');
             $model->handleRegister($name, $email, $password);
-            echo view('auth/register');
+            return redirect()->to(route_to('customer.dashboard'));
         } else {
             $getError = $this->validator;
             $errors = $getError->getErrors();
-            $data['error'] = reset($errors);
-    
-            echo view('auth/register', $data);
+            return redirect()->back()->with('error', reset($errors));
         }
     }
 

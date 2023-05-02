@@ -22,9 +22,9 @@ class UserModel extends Model
             $session->set([
                 'logged_user' => $user,
             ]);
-            return true;
+            return $user['role'];
         } else {
-            return false;
+            return null;
         }
     }
 

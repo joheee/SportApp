@@ -20,11 +20,11 @@
               <input type="password" id="form2Example27" class="form-control form-control-lg" placeholder="password" name="password"/>
             </div>
 
-            <?php if(!empty($error)) { ?>
-              <div class="alert alert-danger" role="alert" >
-                  <?= $error ?>
+            <?php if (session()->has('error')) : ?>
+              <div class="alert alert-danger">
+                  <?= session('error') ?>
               </div>
-            <?php } ?>
+            <?php endif ?>
             
             <button class="mb-4 btn btn-primary btn-lg btn-block" type="submit">Login</button>
 

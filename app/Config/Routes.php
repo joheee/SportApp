@@ -27,25 +27,33 @@ $routes->set404Override();
  * --------------------------------------------------------------------
  */
 
+
 $routes->get('/', 'Home::index', ['as' => 'guest.login']);
 $routes->post('/', 'UserController::handleLogin', ['as' => 'guest.handleLogin']);
 
 $routes->get('/register', 'Home::register', ['as' => 'guest.register']);
-$routes->post('/register', 'UserController::handleRegister', ['as' => 'guest.handleRegister']);
+$routes->post('/register', 'UserController::handleRegister',  ['as' => 'guest.handleRegister']);
 
-$routes->get('/logout', 'UserController::handleLogout', ['as' => 'guest.handleLogout']);
+$routes->group('auth', ['filter' => 'authMiddleware'], function($routes) {
+    $routes->get('logout', 'UserController::handleLogout', ['as' => 'guest.handleLogout']);
+    
+    $routes->group('admin', ['filter' => 'adminMiddleware'], function($routes) {
+        $routes->get('admin-dashboard','AdminController::index',['as' => 'admin.dashboard']);
+        $routes->get('admin-transaction','AdminController::transaction',['as' => 'admin.transaction']);
+        
+        $routes->get('admin-product','AdminController::insert',['as' => 'admin.insert']);
+        $routes->post('admin-product','AdminController::handleInsert',['as' => 'admin.handleInsert']);
+        $routes->get('admin-product-delete/(:num)','AdminController::handleDelete/$1',['as' => 'admin.handleDelete']);
+        $routes->get('admin-product-update/(:num)','AdminController::update/$1',['as' => 'admin.update']);
+        $routes->post('admin-product-update/(:num)','AdminController::handleUpdate/$1',['as' => 'admin.handleUpdate']);
+    });
+    
+    $routes->group('customer', ['filter' => 'customerMiddleware'], function($routes) {
+        $routes->get('customer-dashboard','CustomerController::index',['as' => 'customer.dashboard']);
+        $routes->get('customer-transaction','CustomerController::transaction',['as' => 'customer.transaction']);
+    });
 
-$routes->get('/admin-dashboard','AdminController::index',['as' => 'admin.dashboard']);
-$routes->get('/admin-transaction','AdminController::transaction',['as' => 'admin.transaction']);
-
-$routes->get('/admin-product','AdminController::insert',['as' => 'admin.insert']);
-$routes->post('/admin-product','AdminController::handleInsert',['as' => 'admin.handleInsert']);
-$routes->get('/admin-product-delete/(:num)','AdminController::handleDelete/$1',['as' => 'admin.handleDelete']);
-$routes->get('/admin-product-update/(:num)','AdminController::update/$1',['as' => 'admin.update']);
-$routes->post('/admin-product-update/(:num)','AdminController::handleUpdate/$1',['as' => 'admin.handleUpdate']);
-
-$routes->get('/customer-dashboard','CustomerController::index',['as' => 'customer.dashboard']);
-$routes->get('/customer-transaction','CustomerController::transaction',['as' => 'customer.transaction']);
+});
 
 /*
  * --------------------------------------------------------------------

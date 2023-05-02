@@ -2,7 +2,9 @@
 
 namespace Config;
 
+use App\Filters\AdminMiddleware;
 use App\Filters\AuthMiddleware;
+use App\Filters\CustomerMiddleware;
 use App\Filters\GuestMiddleware;
 use CodeIgniter\Config\BaseConfig;
 use CodeIgniter\Filters\CSRF;
@@ -24,7 +26,9 @@ class Filters extends BaseConfig
         'invalidchars'  => InvalidChars::class,
         'secureheaders' => SecureHeaders::class,
         'authMiddleware' => AuthMiddleware::class,
-        'guestMiddleware' => GuestMiddleware::class
+        'guestMiddleware' => GuestMiddleware::class,
+        'adminMiddleware' => AdminMiddleware::class,
+        'customerMiddleware' => CustomerMiddleware::class,
     ];
 
     /**
