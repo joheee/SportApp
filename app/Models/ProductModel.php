@@ -10,6 +10,11 @@ class ProductModel extends Model
     protected $primaryKey = 'product_id';
     protected $allowedFields    = ['name','image','price','ammount'];
 
+    public function transaction()
+    {
+        return $this->hasMany(TransactionModel::class);
+    }
+
     public function getAllProduct(){
         return $this->findAll();
     }

@@ -24,7 +24,7 @@
         </li>
 
         <li class="nav-item active">
-            <a class="nav-link" href="transaction.php">
+            <a class="nav-link" href="<?= route_to('customer.transaction') ?>">
             <i class="fa-sharp fa-solid fa-money-bill-transfer"></i>
             <span>Transaction History</span></a>
         </li>

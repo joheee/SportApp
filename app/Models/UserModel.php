@@ -9,6 +9,11 @@ class UserModel extends Model
     protected $table            = 'users';
     protected $allowedFields    = ['name','email','password','role'];
 
+    public function transaction()
+    {
+        return $this->hasMany(TransactionModel::class);
+    }
+
     public function handleLogin($email,$password) {
         $user = $this->where('email', $email)->first();
 
